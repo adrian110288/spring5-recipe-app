@@ -8,8 +8,6 @@ public class Notes {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @OneToOne
-    private Recipe recipe;
     @Lob
     private String recipeNotes;
 
@@ -19,14 +17,6 @@ public class Notes {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Recipe getRecipe() {
-        return recipe;
-    }
-
-    public void setRecipe(Recipe recipe) {
-        this.recipe = recipe;
     }
 
     public String getRecipeNotes() {
