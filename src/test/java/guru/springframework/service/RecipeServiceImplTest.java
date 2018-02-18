@@ -9,9 +9,13 @@ import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.mockito.ArgumentMatchers.anyLong;
+import static org.mockito.Mockito.*;
 
 public class RecipeServiceImplTest {
 
@@ -33,11 +37,42 @@ public class RecipeServiceImplTest {
         Set<Recipe> recipeList = new HashSet<>();
         recipeList.add(recipe);
 
-        Mockito.when(recipeRepository.findAll()).thenReturn(recipeList);
+        when(recipeRepository.findAll()).thenReturn(recipeList);
 
         Set<Recipe> recipes = recipeService.getRecipes();
 
         assertEquals(recipes.size(), 1);
         Mockito.verify(recipeRepository, Mockito.times(1)).findAll();
+    }
+
+    @Test
+    public void getRecipeById() {
+
+        Recipe recipe = new Recipe();
+        recipe.setId(1L);
+        Optional<Recipe> recipeOptional = Optional.of(recipe);
+
+//        given
+        when(recipeRepository.findById(anyLong())).thenReturn(recipeOptional);
+
+//        when
+        Recipe recipeReturned = recipeService.findById(1L);
+
+//        then
+        assertNotNull(recipeReturned);
+        verify(recipeRepository, times(1)).findById(anyLong());
+    }
+
+    @Test(expected = RuntimeException.class)
+    public void testThrowExceptionWhenRecipeByIdNotExist() {
+
+        Optional<Recipe> recipeOptional = Optional.empty();
+
+//        given
+        when(recipeRepository.findById(anyLong())).thenReturn(recipeOptional);
+
+//        when
+        Recipe recipe = recipeService.findById(1L);
+
     }
 }
