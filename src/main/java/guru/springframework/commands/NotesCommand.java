@@ -7,7 +7,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class NotesCommand {
+public class NotesCommand implements Command {
     private Long id;
     private String recipeNotes;
 
