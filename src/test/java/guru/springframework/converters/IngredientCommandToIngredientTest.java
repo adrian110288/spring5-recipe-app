@@ -26,7 +26,7 @@ public class IngredientCommandToIngredientTest extends BaseConverterTest<Ingredi
         command.setAmount(AMOUNT);
         UnitOfMeasureCommand unitOfMeasure = new UnitOfMeasureCommand();
         unitOfMeasure.setId(UNIT_OF_MEASURE_ID);
-        command.setUnitOfMeasure(unitOfMeasure);
+        command.setUom(unitOfMeasure);
 
 //        when
         Ingredient ingredient = target.convert(command);
