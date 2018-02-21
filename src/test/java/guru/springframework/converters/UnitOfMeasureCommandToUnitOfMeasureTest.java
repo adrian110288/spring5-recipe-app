@@ -1,13 +1,12 @@
 package guru.springframework.converters;
 
-import guru.springframework.commands.UnitOfMeasureCommand;
 import guru.springframework.domain.UnitOfMeasure;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
-public class UnitOfMeasureCommandToUnitOfMeasureTest extends BaseConverterTest<UnitOfMeasureCommandToUnitOfMeasure, UnitOfMeasureCommand> {
+public class UnitOfMeasureCommandToUnitOfMeasureTest extends BaseConverterTest<UnitOfMeasureCommandToUnitOfMeasure, guru.springframework.commands.UnitOfMeasureCommand> {
 
     private static final Long ID = 1L;
     private static final String DESCRIPTION = "description";
@@ -15,7 +14,7 @@ public class UnitOfMeasureCommandToUnitOfMeasureTest extends BaseConverterTest<U
     @Test
     public void convert() {
 
-        UnitOfMeasureCommand command = new UnitOfMeasureCommand();
+        guru.springframework.commands.UnitOfMeasureCommand command = new guru.springframework.commands.UnitOfMeasureCommand();
         command.setId(ID);
         command.setDescription(DESCRIPTION);
 
@@ -32,7 +31,7 @@ public class UnitOfMeasureCommandToUnitOfMeasureTest extends BaseConverterTest<U
     }
 
     @Override
-    protected UnitOfMeasureCommand provideEmpty() {
-        return new UnitOfMeasureCommand();
+    protected guru.springframework.commands.UnitOfMeasureCommand provideEmpty() {
+        return new guru.springframework.commands.UnitOfMeasureCommand();
     }
 }
