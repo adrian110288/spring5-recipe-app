@@ -55,6 +55,7 @@ public class RecipeController {
     @RequestMapping("recipe/{id}/delete")
     public String deleteById(@PathVariable String id) {
 
+
         log.debug("Deleting by id: " + id);
 
         recipeService.deleteById(Long.valueOf(id));
@@ -67,17 +68,6 @@ public class RecipeController {
 
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("404error");
-        modelAndView.addObject("exception", e);
-
-        return modelAndView;
-    }
-
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
-    @ExceptionHandler(NumberFormatException.class)
-    public ModelAndView handleNumberFormatException(Exception e) {
-
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("400error");
         modelAndView.addObject("exception", e);
 
         return modelAndView;
